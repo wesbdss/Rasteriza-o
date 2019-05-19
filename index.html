@@ -3,14 +3,43 @@
 <head>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta charset="UTF-8">
-	<title>Simulador de Barreiras Destruidas</title>
+	<title>Rasterizações</title>
+	<style type="text/css">
+		canvas{
+			border: solid;
+			border-color: blue;
+			border-radius: 20px;
+		}
+	</style>
 </head>
 <body>
 	<p>---- --- -- - -- -- - - - - -- -- ----</p>
 	<canvas id="screen" width="300" height="300"></canvas>
 	<p>---- --- -- - -- -- - - - - -- -- ----</p>
+	<div>
+		<strong>Selecione as cores:</strong>
+		<div>
+		    <input type="color" id="colorL" name="head"
+		           value="#000000">
+		    <label for="head">Cor da Linha</label>
+		</div>
+	</div>
+	<div>
+		<STRONG>Selecione o método:		</STRONG><select id=metodoSelect onclick="modo()">
+	    	<option value="0">Selecione Modo</option>
+	    	<option value="1">Analítico</option>
+	    	<option value="2">DDA</option>
+	    	<option value="3">Bresenham Linha</option>
+	    	<option value="4">Bresenham Círculo</option>
+		</select>
+	</div>
 
+	<div id="metodoDiv">
 
+	</div>
+	<div>
+		</br><button id="Click" onclick="start()">Rasterizar</button>
+	</div>
 	<script language="javascript" src="script.js"></script>
 </body>
 </html>
