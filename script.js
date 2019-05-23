@@ -61,8 +61,10 @@ function Main(){
 Main();
 
 function modo(){//definição das variáveis
+	
 	var op = document.getElementById('metodoSelect');
 	var param = document.getElementById('metodoDiv');
+	
 	if(op.value == 0){
 		param.innerHTML = '';
 	}
@@ -79,33 +81,30 @@ function modo(){//definição das variáveis
 		param.innerHTML =" </br><strong>x0	</strong><input type=\"number\" id=\"x0\" value=\"0\"> <strong>/	y0</strong><input type=\"number\" id=\"y0\" value=\"0\"><br> <br><strong>Raio:     </strong><input type=\"number\" id=\"raio\" value=\"6\">";
 	}
 }
+
+
 function start(){
-	var op = document.getElementById('metodoSelect');
-	var color = document.getElementById('colorL');
-	if(op.value ==1 ){
-		var x0 = document.getElementById('x0');
-		var y0 = document.getElementById('y0');
-		var x1 = document.getElementById('x1');
-		var y1 = document.getElementById('y1');
+	
+	var op 		= document.getElementById('metodoSelect');
+	var color 	= document.getElementById('colorL').value;
+	
+	var x0 = parseInt(document.getElementById('x0').value);
+	var y0 = parseInt(document.getElementById('y0').value);
+	var x1 = parseInt(document.getElementById('x1').value);
+	var y1 = parseInt(document.getElementById('y1').value);
+
+	if(op.value == 1 ){	
+		metodoAnalitico(x0,y0,x1,y1,color);
 	}
 	if(op.value == 2){
-		var x0 = document.getElementById('x0');
-		var y0 = document.getElementById('y0');
-		var x1 = document.getElementById('x1');
-		var y1 = document.getElementById('y1');
+		DDa(x0,y0,x1,y1,color);
 	}
 	if(op.value == 3){
-		var x0 = document.getElementById('x0');
-		var y0 = document.getElementById('y0');
-		var x1 = document.getElementById('x1');
-		var y1 = document.getElementById('y1');
-		bline(parseInt(x0.value),parseInt(y0.value),parseInt(x1.value),parseInt(y1.value),color.value);// algoritmo de bresenham
+		bline(x0,y0,x1,y1,color);// algoritmo de bresenham
 	}
 	if(op.value == 4){
-		var x0 = document.getElementById('x0');
-		var y0 = document.getElementById('y0');
-		var raio = document.getElementById('raio');
-		DrawCirle(parseInt(x0.value),parseInt(y0.value),parseInt(raio.value),color.value);
+		var raio = document.getElementById('raio').value;
+		DrawCirle(x0,y0,raio,color);
 	}
 
 }
@@ -161,3 +160,67 @@ function DrawCirle(x0, y0, radius,color) {
     }
   }
 };
+
+
+function DDa(x1, y1, x2, y2, color) 
+{
+
+	var dx = x2 - x1;
+	var dy = y2 - y1;
+
+	if(Math.abs(dx) > Math.abs(dy))
+		var passos = Math.abs(dx);
+	else
+		var passos = Math.abs(dy);
+
+	var xin = dx / passos;
+	var yin = dy / passos;
+
+	var x = x1;
+	var y = y1;
+
+	Math.round(x);
+	Math.round(y);
+
+	for(k = 1; k < passos; k++)
+	{
+		Math.round(xin);
+		Math.round(yin);
+
+		x += xin;
+		y += yin;
+
+		Math.round(xin);
+		Math.round(yin);
+
+		pintar(parseInt(x), parseInt(y), color);
+	}
+}
+
+
+function metodoAnalitico(x1, y1, x2, y2, color) 
+{
+
+	if(x1 == x2){
+
+		for(var y = y1; y <= y2; y++){
+			pintar(parseInt(x1), parseInt(y), color);
+			console.log("a: ", x1, y);
+		}
+
+	}else{
+
+		var m = (y2 - y1) / (x2 - x1);
+		var b = y2 - m * x2;
+
+		var y;
+
+		for(var x = x1; x <= x2; x++){
+			y = m * x + b;
+			pintar(parseInt(x), parseInt(y), color);
+			console.log("b: ", x, y);
+		}
+
+	}
+
+}
