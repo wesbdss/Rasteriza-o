@@ -87,23 +87,41 @@ function start(){
 	
 	var op 		= document.getElementById('metodoSelect');
 	var color 	= document.getElementById('colorL').value;
-	
-	var x0 = parseInt(document.getElementById('x0').value);
-	var y0 = parseInt(document.getElementById('y0').value);
-	var x1 = parseInt(document.getElementById('x1').value);
-	var y1 = parseInt(document.getElementById('y1').value);
 
-	if(op.value == 1 ){	
+	if(op.value == 1 ){
+
+		var x0 = parseInt(document.getElementById('x0').value);
+		var y0 = parseInt(document.getElementById('y0').value);
+		var x1 = parseInt(document.getElementById('x1').value);
+		var y1 = parseInt(document.getElementById('y1').value);
+		
 		metodoAnalitico(x0,y0,x1,y1,color);
 	}
 	if(op.value == 2){
+
+		var x0 = parseInt(document.getElementById('x0').value);
+		var y0 = parseInt(document.getElementById('y0').value);
+		var x1 = parseInt(document.getElementById('x1').value);
+		var y1 = parseInt(document.getElementById('y1').value);
+		
 		DDa(x0,y0,x1,y1,color);
 	}
 	if(op.value == 3){
+		
+		var x0 = parseInt(document.getElementById('x0').value);
+		var y0 = parseInt(document.getElementById('y0').value);
+		var x1 = parseInt(document.getElementById('x1').value);
+		var y1 = parseInt(document.getElementById('y1').value);
+
 		bline(x0,y0,x1,y1,color);// algoritmo de bresenham
 	}
 	if(op.value == 4){
-		var raio = document.getElementById('raio').value;
+		
+		var x0 = parseInt(document.getElementById('x0').value);
+		var y0 = parseInt(document.getElementById('y0').value);
+
+		var raio = parseInt(document.getElementById('raio').value);
+		
 		DrawCirle(x0,y0,raio,color);
 	}
 
